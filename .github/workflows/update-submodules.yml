@@ -2,7 +2,7 @@ name: Daily Submodule Update
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Run at midnight UTC every day
+    - cron: "0 */5 * * *" # Run every 5 hours
   workflow_dispatch: # Allows manual triggering
 
 jobs:
