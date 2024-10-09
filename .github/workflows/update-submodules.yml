@@ -1,0 +1,41 @@
+name: Daily Submodule Update
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Run at midnight UTC every day
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+          fetch-depth: 0
+      - name: Update submodules
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+
+          # Selective submodule update
+          git submodule foreach '
+              if [ "$path" != "pearai-server" ]; then
+                  git fetch
+                  git checkout origin/main
+              else
+                  echo "Skipping update for $path"
+              fi
+          '
+
+          # Check if there are changes
+          if [[ -n $(git status -s) ]]; then
+            # Commit and push changes
+            git add .
+            git commit -m "Daily update of submodules $(date +%Y-%m-%d)"
+            git push origin main
+          else
+            echo "No updates to submodules."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,14 +1,21 @@
 #!/bin/bash
 
-# Update all submodules
-git submodule update --remote
+# Update all submodules except the server
+git submodule foreach '
+    if [ "$path" != "pearai-server" ]; then
+        git fetch
+        git checkout origin/main
+    else
+        echo "Skipping update for $path"
+    fi
+'
 
 # Check if there are changes
-if [[ -n  ]]; then
-  # Commit and push changes
-  git add .
-  git commit -m "Daily update of submodules 2024-10-09"
-  git push origin main
+if [[ -n $(git status -s) ]]; then
+    # Commit and push changes
+    git add .
+    git commit -m "Daily update of submodules $(date +%Y-%m-%d)"
+    git push origin main
 else
-  echo "No updates to submodules."
+    echo "No updates to submodules."
 fi
