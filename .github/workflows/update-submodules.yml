@@ -11,13 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: "recursive"
+          submodules: "false" # Don't checkout submodules initially
           fetch-depth: 0
-      - name: Update submodules
+
+      - name: Initialize public submodules
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
 
+          # Initialize and update all submodules except pearai-server
+          git submodule update --init --recursive -- pear-landing-page pearai-app pearai-documentation pearai-server-issues-public pearai-submodule
+
+      - name: Update submodules
+        run: |
           # Selective submodule update
           git submodule foreach '
               if [ "$path" != "pearai-server" ]; then
