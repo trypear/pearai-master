@@ -16,3 +16,6 @@
 [submodule "pearai-server"]
 	path = pearai-server
 	url = https://github.com/trypear/pearai-server.git
+[submodule "pearai-mcp"]
+	path = pearai-mcp
+	url = https://github.com/trypear/pearai-mcp
