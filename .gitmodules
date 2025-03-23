@@ -19,3 +19,6 @@
 [submodule "pearai-mcp"]
 	path = pearai-mcp
 	url = https://github.com/trypear/pearai-mcp
+[submodule "PearAI-Roo-Code"]
+	path = PearAI-Roo-Code
+	url = https://github.com/trypear/PearAI-Roo-Code
