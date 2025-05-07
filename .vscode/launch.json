@@ -86,6 +86,15 @@
       "cwd": "${workspaceFolder}/PearAI-Roo-Code",
       "skipFiles": ["<node_internals>/**"],
       "killBehavior": "polite"
+    },
+    {
+      "name": "🧩 Run Submodule TSC Watch",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run tsc-watch",
+      "cwd": "${workspaceFolder}/pearai-submodule/extensions/vscode",
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
     }
   ],
   "compounds": [
@@ -94,6 +103,7 @@
       "configurations": [
         "🧩 Run Submodule GUI Dev",
         "🧩 Run Submodule Extension Watch",
+        "🧩 Run Submodule TSC Watch",
         "📱 Run PearAI App Watch",
         "🚀 Run Roo Code Watch",
         "🚀 Run Roo Code Dev"
