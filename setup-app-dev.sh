@@ -1,36 +1,45 @@
 #!/bin/bash
 
 # setup-app-dev.sh
-# Master script to spin up development environments for PearAI app, submodule, and Roo code
-# This script launches separate terminals for each component
+# Master script to install all dependencies for PearAI app, submodule, and Roo code
+# This script runs all necessary installation commands in sequence
 
-# Store the root directory
-ROOT_DIR="$(pwd)"
+set -e  # Exit immediately if a command exits with a non-zero status
 
 # Function to display messages with formatting
 print_message() {
   echo -e "\n\033[1;36m==>\033[0m \033[1m$1\033[0m"
 }
 
-print_message "Starting development environments for PearAI components..."
+# Function to handle errors
+handle_error() {
+  echo -e "\n\033[1;31mERROR: $1\033[0m"
+  exit 1
+}
 
-# Open terminal for PearAI app
-print_message "Starting PearAI app development environment..."
-osascript -e "tell application \"Terminal\"
-    do script \"cd '$ROOT_DIR/pearai-app' && ./scripts/pearai/install-dependencies.sh && echo 'PearAI app development environment is running'\"
-end tell"
+# Store the root directory
+ROOT_DIR="$(pwd)"
 
-# Open terminal for PearAI submodule
-print_message "Starting PearAI submodule development environment..."
-osascript -e "tell application \"Terminal\"
-    do script \"cd '$ROOT_DIR/pearai-submodule' && ./scripts/install-and-build.sh && echo 'PearAI submodule development environment is running'\"
-end tell"
+# Step 1: Install PearAI-Roo-Code dependencies
+print_message "Installing PearAI-Roo-Code dependencies..."
+cd "$ROOT_DIR/PearAI-Roo-Code" || handle_error "Could not navigate to PearAI-Roo-Code directory"
+npm run install:all || handle_error "Failed to install PearAI-Roo-Code dependencies"
+print_message "PearAI-Roo-Code dependencies installed successfully!"
 
-# Open terminal for PearAI-Roo-Code
-print_message "Starting PearAI-Roo-Code development environment..."
-osascript -e "tell application \"Terminal\"
-    do script \"cd '$ROOT_DIR/PearAI-Roo-Code' && npm run install:all && echo 'PearAI-Roo-Code development environment is running'\"
-end tell"
+# Step 2: Install and build PearAI submodule
+print_message "Installing and building PearAI submodule..."
+cd "$ROOT_DIR/pearai-submodule" || handle_error "Could not navigate to pearai-submodule directory"
+./scripts/install-and-build.sh || handle_error "Failed to install and build PearAI submodule"
+print_message "PearAI submodule installed and built successfully!"
 
-print_message "All development environments have been started! 🎉"
-echo "Check the opened terminals for each component's status."
+# Step 3: Install PearAI app dependencies
+print_message "Installing PearAI app dependencies..."
+cd "$ROOT_DIR/pearai-app" || handle_error "Could not navigate to pearai-app directory"
+npm install || handle_error "Failed to install PearAI app dependencies"
+print_message "PearAI app dependencies installed successfully!"
+
+# Return to root directory
+cd "$ROOT_DIR" || handle_error "Could not navigate back to root directory"
+
+print_message "All installations completed successfully! 🎉"
+echo "The PearAI app, submodule, and Roo code are now set up and ready for development."
