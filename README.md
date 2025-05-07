@@ -24,7 +24,10 @@ We welcome contributions from the community! Whether you're fixing a bug, improv
 - Start by running `./setup-app-dev.sh`
 - Once everything has installed, in vscode, go to Run and Debug -> 🚀 Start All Dev Processes
 - Wait for everything to build/dev (pearai-app yarn watch takes the longest)
-- Run `./pearai-app/scripts/code.sh` to start the app
+- Run `./pearai-app/scripts/code.sh` to start the app and restart this process to see the changes
+
+> [!NOTE]
+> The Submodule and Roo Code GUIs have Hot Module Reload (HMR) so they will update live, but you will need to restart the app to see any other changes
 
 **Please review the `CONTRIBUTING.md`/`README.md` in the repositories you'd like to participate in.**
 
