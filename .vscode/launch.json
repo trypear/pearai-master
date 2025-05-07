@@ -1,0 +1,67 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch PearAI Extension Host",
+            "type": "extensionHost",
+            "request": "launch",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}/pearai-submodule/extensions/vscode"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/pearai-submodule/extensions/vscode/out/**/*.js"
+            ],
+            "preLaunchTask": "start-all-dev",
+            "sourceMaps": true
+        },
+        {
+            "name": "Attach to PearAI App",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "restart": true,
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/pearai-app/out/**/*.js"
+            ]
+        },
+        {
+            "name": "Attach to PearAI-Roo-Code",
+            "type": "node",
+            "request": "attach",
+            "port": 9230,
+            "restart": true,
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/PearAI-Roo-Code/dist/**/*.js"
+            ]
+        },
+        {
+            "name": "Debug All Components",
+            "type": "extensionHost",
+            "request": "launch",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}/pearai-submodule/extensions/vscode"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/pearai-submodule/extensions/vscode/out/**/*.js",
+                "${workspaceFolder}/pearai-app/out/**/*.js",
+                "${workspaceFolder}/PearAI-Roo-Code/dist/**/*.js"
+            ],
+            "preLaunchTask": "start-all-dev",
+            "sourceMaps": true
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Full PearAI Development",
+            "configurations": [
+                "Launch PearAI Extension Host",
+                "Attach to PearAI App",
+                "Attach to PearAI-Roo-Code"
+            ],
+            "preLaunchTask": "start-all-dev",
+            "stopAll": true
+        }
+    ]
+}

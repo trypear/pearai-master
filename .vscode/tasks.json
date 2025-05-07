@@ -1,0 +1,131 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "pearai-app: watch",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/pearai-app && yarn watch",
+            "problemMatcher": ["$tsc-watch"],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "label": "pearai-submodule: install-and-build",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/pearai-submodule && ./scripts/install-and-build.sh",
+            "problemMatcher": ["$tsc"],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "label": "pearai-submodule: esbuild-watch",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/pearai-submodule/extensions/vscode && npm run esbuild-watch",
+            "problemMatcher": ["$tsc-watch"],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "label": "pearai-submodule: tsc-watch",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/pearai-submodule/extensions/vscode && npm run tsc-watch",
+            "problemMatcher": ["$tsc-watch"],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "label": "pearai-submodule: gui-dev",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/pearai-submodule/gui && npm run dev",
+            "problemMatcher": [],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "label": "pearai-submodule: extension:dev",
+            "dependsOn": [
+                "pearai-submodule: esbuild-watch",
+                "pearai-submodule: tsc-watch",
+                "pearai-submodule: gui-dev"
+            ],
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "pearai-roo-code: watch",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/PearAI-Roo-Code && npm run watch",
+            "problemMatcher": ["$tsc-watch"],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "label": "pearai-roo-code: dev",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/PearAI-Roo-Code && npm run dev",
+            "problemMatcher": [],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            },
+            "group": "build"
+        },
+        {
+            "label": "start-all-dev",
+            "dependsOn": [
+                "pearai-app: watch",
+                "pearai-submodule: extension:dev",
+                "pearai-roo-code: watch",
+                "pearai-roo-code: dev"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "setup-all-dev",
+            "type": "shell",
+            "command": "${workspaceFolder}/setup-app-dev.sh",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": false
+            },
+            "group": "build"
+        }
+    ]
+}
