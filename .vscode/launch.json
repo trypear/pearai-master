@@ -1,0 +1,118 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🧩 Launch PearAI Extension Host",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/pearai-submodule/extensions/vscode"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/pearai-submodule/extensions/vscode/out/**/*.js"
+      ],
+      "preLaunchTask": "🚀 Start All Dev Servers",
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    },
+    {
+      "name": "📱 Attach to PearAI App",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/pearai-app/out/**/*.js"
+      ],
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    },
+    {
+      "name": "🚀 Attach to PearAI-Roo-Code",
+      "type": "node",
+      "request": "attach",
+      "port": 9230,
+      "restart": true,
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/PearAI-Roo-Code/dist/**/*.js"
+      ],
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    },
+    {
+      "name": "🧩 Run Submodule GUI Dev",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "cwd": "${workspaceFolder}/pearai-submodule/gui",
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    },
+    {
+      "name": "🧩 Run Submodule Extension Watch",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run esbuild-watch",
+      "cwd": "${workspaceFolder}/pearai-submodule/extensions/vscode",
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    },
+    {
+      "name": "📱 Run PearAI App Watch",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "yarn watch",
+      "cwd": "${workspaceFolder}/pearai-app",
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    },
+    {
+      "name": "🚀 Run Roo Code Watch",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run watch",
+      "cwd": "${workspaceFolder}/PearAI-Roo-Code",
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    },
+    {
+      "name": "🚀 Run Roo Code Dev",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "cwd": "${workspaceFolder}/PearAI-Roo-Code",
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    },
+    {
+      "name": "🧩 Run Submodule TSC Watch",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run tsc-watch",
+      "cwd": "${workspaceFolder}/pearai-submodule/extensions/vscode",
+      "skipFiles": ["<node_internals>/**"],
+      "killBehavior": "polite"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🚀 Start All Dev Processes",
+      "configurations": [
+        "🧩 Run Submodule GUI Dev",
+        "🧩 Run Submodule Extension Watch",
+        "🧩 Run Submodule TSC Watch",
+        "📱 Run PearAI App Watch",
+        "🚀 Run Roo Code Watch",
+        "🚀 Run Roo Code Dev"
+      ],
+      "presentation": {
+        "group": "",
+        "order": 2
+      },
+      "stopAll": true
+    }
+  ]
+}

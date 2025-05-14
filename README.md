@@ -19,6 +19,16 @@ We welcome contributions from the community! Whether you're fixing a bug, improv
 - Outside of dedicated Quests, we also have a bunch of issues which are free to tackle (see the issues tab on individual repos). Make sure to leave a comment indicating you're working on it (check for existing comments also). You can raise a PR anytime and we usually review them pretty quickly.
 - We have a lot on our plate so it's easy for us to miss something. The best way to get our attention is to ping us directly in our Discord server.
 
+## How to run
+
+- Start by running `./setup-app-dev.sh`
+- Once everything has installed, in vscode, go to Run and Debug -> 🚀 Start All Dev Processes
+- Wait for everything to build/dev (pearai-app yarn watch takes the longest)
+- Run `./pearai-app/scripts/code.sh` to start the app and restart this process to see the changes
+
+> [!NOTE]
+> The Submodule and Roo Code GUIs have Hot Module Reload (HMR) so they will update live, but you will need to restart the app to see any other changes
+
 **Please review the `CONTRIBUTING.md`/`README.md` in the repositories you'd like to participate in.**
 
 Curious about our stack?
