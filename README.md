@@ -47,8 +47,7 @@ To get started with PearAI development, you'll need to clone this repo (pearai-m
 
 1. PearAI App:
 ```bash
-./pearai-app/scripts/pearai/install-dependencies.sh  # For Unix/Mac
-./pearai-app/scripts/pearai/install-dependencies.ps1 # For Windows
+cd ./pearai-app && npm i
 ```
 
 2. PearAI Roo Code:
