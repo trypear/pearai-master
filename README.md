@@ -67,10 +67,10 @@ cd ./pearai-roo-code && npm run install:all
 To start development:
 
 1. Launch the development servers:
-   - In VSCode, go to Run and Debug
+   - In PearAI (or vscode), go to Run and Debug
    - Select and run the "🚀 Start All Dev Servers" task
 
-2. Start the VSCode instance:
+2. Start the PearAI instance:
 ```bash
 ./pearai-app/scripts/code.sh  # For Unix/Mac
 ./pearai-app/scripts/code.ps1 # For Windows
