@@ -66,6 +66,8 @@ cd ./pearai-roo-code && npm run install:all
 
 To start development:
 
+![image](https://github.com/user-attachments/assets/35d08ab7-ebbf-4bfe-a4e4-fd1f51904187)
+
 1. Launch the development servers:
    - In PearAI (or vscode), go to Run and Debug
    - Select and run the "🚀 Start All Dev Servers" task
