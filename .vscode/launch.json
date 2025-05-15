@@ -64,7 +64,7 @@
       "name": "📱 Run PearAI App Watch",
       "type": "node-terminal",
       "request": "launch",
-      "command": "yarn watch",
+      "command": "npm run watch",
       "cwd": "${workspaceFolder}/pearai-app",
       "skipFiles": ["<node_internals>/**"],
       "killBehavior": "polite"
