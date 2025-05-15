@@ -15,32 +15,81 @@ What you're seeing here is the conglomeration of all the repositories that make 
 
 We welcome contributions from the community! Whether you're fixing a bug, improving the documentation, or adding a new feature, we appreciate your help in making PearAI better. There is a lot of context involved and we understand it can be overwhelming when first trying to join the project. Here is a quick summary of key information and how we currently work together:
 
-- Pan and Nang conduct "Quests", which are 1-3 weeks sprints. We will pick out the current highest priority issues for these quests, ping everyone in our [Discord](<[url](https://discord.gg/7QMraJUsQt)>), and ask for applications to participate in them. The chosen people will help finish the tasks alongside us, participating in calls and working together. If help is needed, we may add more people to the quest. You can see the current open quests [here](https://github.com/orgs/trypear/projects?query=is%3Aopen).
-- Outside of dedicated Quests, we also have a bunch of issues which are free to tackle (see the issues tab on individual repos). Make sure to leave a comment indicating you're working on it (check for existing comments also). You can raise a PR anytime and we usually review them pretty quickly.
+- We have a bunch of issues which are free to tackle (see the issues tab on individual repos). Make sure to leave a comment indicating you're working on it (check for existing comments also). You can raise a PR anytime and we usually review them pretty quickly.
+- If you notice anything about Pear that you think you could improve, then let us know!
 - We have a lot on our plate so it's easy for us to miss something. The best way to get our attention is to ping us directly in our Discord server.
 
-## How to run
+> [!IMPORTANT]
+> Whenever making changes to our updated forks (pearai-app and pearai-roo-code) be mindful of any potential issues your changes could introduce when we have to pull upstream
 
-- Start by running `./setup-app-dev.sh`
-- Once everything has installed, in vscode, go to Run and Debug -> 🚀 Start All Dev Processes
-- Wait for everything to build/dev (pearai-app yarn watch takes the longest)
-- Run `./pearai-app/scripts/code.sh` to start the app and restart this process to see the changes
+
+## 🛠 Prerequisites
+
+Ensure you have the following tools installed:
+
+- 🦀 [Rust/Cargo](https://www.rust-lang.org/tools/install)
+- 🐙 [Git](https://git-scm.com)
+- 🌐 [Node.JS](https://nodejs.org/en/), **x64**, version `=20.18.0` (other versions have not been tested) - we recommend using Node Version Manager (nvm)
+- 📦 [Npm](https://www.npmjs.com/), version `=10.8.2` (other versions have not been tested)
+- 📦 [Yarn 1](https://classic.yarnpkg.com/en/), version `>=1.10.1 and <2`
+- 🐍 [Python](https://www.python.org/downloads/), version `=3.11.X` (required for node-gyp) - we recommend using pyvenv
+- ⚙️ A C/C++ compiler toolchain for your platform:
+  - **Windows**: Install the Windows Build Tools (through Visual Studio Installer) with the following components
+    - Desktop development with C++ (Workload)
+    - C++ MFC for v143 build tools with Spectre Mitigations (Individual Component)
+    - MSVC v143 - VS 2022 C++ x64/x86 Spectre-mitigated libs (Individual Component)
+  - **macOS**: Install Xcode and Command Line Tools with `xcode-select --install`
+  - **Linux**: Install the necessary development tools as described in the instructions
+
+## Installation
+
+To get started with PearAI development, you'll need to clone this repo (pearai-master) and install the dependencies for each component:
+
+1. PearAI App:
+```bash
+./pearai-app/scripts/pearai/install-dependencies.sh  # For Unix/Mac
+./pearai-app/scripts/pearai/install-dependencies.ps1 # For Windows
+```
+
+2. PearAI Roo Code:
+```bash
+cd ./pearai-roo-code && npm run install:all
+```
+
+3. PearAI Submodule:
+```bash
+./pearai-submodule/install-and-build.sh  # For Unix/Mac
+./pearai-submodule/install-and-build.ps1 # For Windows
+```
+
+## Development
+
+To start development:
+
+1. Launch the development servers:
+   - In VSCode, go to Run and Debug
+   - Select and run the "🚀 Start All Dev Servers" task
+
+2. Start the VSCode instance:
+```bash
+./pearai-app/scripts/code.sh  # For Unix/Mac
+./pearai-app/scripts/code.ps1 # For Windows
+```
 
 > [!NOTE]
-> The Submodule and Roo Code GUIs have Hot Module Reload (HMR) so they will update live, but you will need to restart the app to see any other changes
+> Hot Module Reload (HMR) is enabled for React frontends (Roo Code frontend, creator overlay, and chat pane).
+> For changes outside these components, you'll need to restart the VSCode instance using the code script.
 
-**Please review the `CONTRIBUTING.md`/`README.md` in the repositories you'd like to participate in.**
-
-Curious about our stack?
+## Technology Stack
 
 - PearAI is in TypeScript/Electron.js
 - PearAI landing page is Next.js/React with Supabase auth (TailwindCSS + Shadcn)
 - PearAI backend is a Python FastAPI server with Supabase database
-- Logging/Telemetry is done with Axiom
+- Logging/Telemetry is done with Axiom and PostHog
 
 ## Contact
 
-For any questions or issues, feel free to open an issue, or you can also reach out to us directly in the [PearAI Discord](https://discord.gg/7QMraJUsQt), or email us at [pearai@trypear.ai](mailto:pearai@trypear.ai).
+For any questions or issues, feel free to open an issue, or you can also reach out to us directly in the [PearAI Discord](https://discord.gg/7QMraJUsQt), or email us at [team@trypear.ai](mailto:team@trypear.ai).
 
 ## FAQ
 
